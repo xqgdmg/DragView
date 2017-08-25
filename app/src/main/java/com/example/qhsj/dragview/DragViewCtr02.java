@@ -18,14 +18,14 @@ import android.view.ViewGroup;
 import android.view.animation.LinearInterpolator;
 import android.widget.ImageButton;
 import android.widget.RelativeLayout;
+import android.widget.Toast;
 
 /**
- * @author zhouL
  *         Description: 显示悬浮控件
+ *         这个边缘可以点击
  */
-public class DragViewCtr {
-
-    private static final int MOVE_LENGH = 150;
+public class DragViewCtr02 {
+    private static final int MOVE_LENGH = 30;
 
     private int screenHeight;
     private int screenWidth;
@@ -47,7 +47,11 @@ public class DragViewCtr {
     private int mIntoValue = 0;
 
 
-    public DragViewCtr(Activity activity) {
+    private int downX;
+    private int downY;
+
+
+    public DragViewCtr02(Activity activity) {
         this.activity = activity;
         this.screenHeight = activity.getWindowManager().getDefaultDisplay().getHeight();
         this.screenWidth = activity.getWindowManager().getDefaultDisplay().getWidth();
@@ -93,8 +97,8 @@ public class DragViewCtr {
             public boolean onTouch(View v, MotionEvent event) {
                 switch (event.getAction()) {
                     case MotionEvent.ACTION_DOWN:// 手指第一次触摸到屏幕
-                        this.startX = (int) event.getRawX();
-                        this.startY = (int) event.getRawY();
+                        downX = this.startX = (int) event.getRawX();
+                        downY = this.startY = (int) event.getRawY();
                         downTime = System.currentTimeMillis();
 
                         if (state.equals("leftInto")) {
@@ -175,6 +179,11 @@ public class DragViewCtr {
                         editor.putInt("lasty", lasty);
                         editor.commit();
 
+
+                        if (Math.abs(downX - startX) < MOVE_LENGH && Math.abs(downY - startY) < MOVE_LENGH && (upTime - downTime) < 150l) {//点击
+                            click();
+                        }
+
                         if (lastx < 20 && !state.equals("leftInto")) {
                             mIntoValue = lastx + iv_drag.getWidth() / 2;
                             leftInto();
@@ -185,10 +194,6 @@ public class DragViewCtr {
                             mIntoValue = screenWidth - iv_drag.getRight() + iv_drag.getWidth() / 2;
                             rightInto();
                             break;
-                        }
-
-                        if (Math.abs(lastx - startX) < MOVE_LENGH && Math.abs(lasty - startY) < MOVE_LENGH && (upTime - downTime) < 150l) {//点击
-                            click();
                         }
                         break;
                 }
@@ -208,7 +213,7 @@ public class DragViewCtr {
      * 点击
      */
     private void click() {
-
+        Toast.makeText(activity, "click02", Toast.LENGTH_SHORT).show();
     }
 
     private void leftInto() {
@@ -277,5 +282,4 @@ public class DragViewCtr {
         animatorSet.start();
 
         state = "noInto";
-    }
-}
+    }}

@@ -11,20 +11,38 @@
     tools:context="com.example.qhsj.dragview.MainActivity">
 
     <TextView
-        android:id="@+id/tvShow"
+        android:id="@+id/tvShow01"
         android:gravity="center"
         android:background="#55ff0000"
         android:layout_width="match_parent"
         android:layout_height="50dp"
-        android:text="显示悬浮按钮" />
+        android:text="显示悬浮按钮01" />
 
     <TextView
-        android:id="@+id/tvHide"
+        android:id="@+id/tvHide01"
         android:layout_marginTop="@dimen/activity_vertical_margin"
         android:gravity="center"
         android:background="#55ff0000"
         android:layout_width="match_parent"
         android:layout_height="50dp"
-        android:text="隐藏悬浮按钮" />
+        android:text="隐藏悬浮按钮01" />
+
+    <TextView
+        android:id="@+id/tvShow02"
+        android:layout_marginTop="@dimen/activity_vertical_margin"
+        android:gravity="center"
+        android:background="#5500ff00"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:text="显示悬浮按钮02" />
+
+    <TextView
+        android:id="@+id/tvHide02"
+        android:layout_marginTop="@dimen/activity_vertical_margin"
+        android:gravity="center"
+        android:background="#5500ff00"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:text="隐藏悬浮按钮02" />
 
 </LinearLayout>
